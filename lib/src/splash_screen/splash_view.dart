@@ -1,16 +1,30 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
+import 'package:depotworkflow/src/login/login_view.dart';
 import 'splash_controller.dart';
 
-/// Displays the various settings that can be customized by the user.
-///
-/// When a user changes a setting, the SettingsController is updated and
-/// Widgets that listen to the SettingsController are rebuilt.
-class SplashView extends StatelessWidget {
-  const SplashView({Key? key}) : super(key: key);
+class SplashView extends StatefulWidget {
 
   static const routeName = '/splash';
 
+  @override
+  _SplashViewState createState() => _SplashViewState();
+}
+class _SplashViewState extends State<SplashView> {
+  @override
+  void initState() {
+    super.initState();
+    Timer(Duration(seconds: 1),
+            ()=>Navigator.pushReplacement(context,
+            MaterialPageRoute(builder:
+                (context) =>
+                    LoginView()
+            )
+        )
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return const Scaffold(

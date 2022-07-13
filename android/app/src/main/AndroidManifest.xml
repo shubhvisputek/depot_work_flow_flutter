@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.aurusinc.depot_work_flow">
+    package="com.aurusinc.depotworkflow.depotworkflow">
    <application
-        android:label="depot_work_flow"
+        android:label="Depot Work Flow"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
