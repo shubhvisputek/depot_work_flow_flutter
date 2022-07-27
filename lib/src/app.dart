@@ -8,6 +8,7 @@ import 'sample_feature/sample_item_list_view.dart';
 import 'settings/settings_controller.dart';
 import 'settings/settings_view.dart';
 import 'splash_screen/splash_view.dart';
+import 'package:get/get.dart';
 
 /// The Widget that configures your application.
 class MyApp extends StatelessWidget {
@@ -27,12 +28,12 @@ class MyApp extends StatelessWidget {
     return AnimatedBuilder(
       animation: settingsController,
       builder: (BuildContext context, Widget? child) {
-        return MaterialApp(
+        return GetMaterialApp(
           // Providing a restorationScopeId allows the Navigator built by the
           // MaterialApp to restore the navigation stack when a user leaves and
           // returns to the app after it has been killed while running in the
           // background.
-          restorationScopeId: 'app',
+          // restorationScopeId: 'app',
 
           // Provide the generated AppLocalizations to the MaterialApp. This
           // allows descendant Widgets to display the correct translations

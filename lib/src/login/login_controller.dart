@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'login_service.dart';
 
@@ -7,7 +8,7 @@ import 'login_service.dart';
 ///
 /// Controllers glue Data Services to Flutter Widgets. The SplashController
 /// uses the SplashService to store and retrieve user settings.
-class LoginController with ChangeNotifier {
+class LoginController extends GetxController {
   LoginController(this._loginService);
 
   // Make SplashService a private variable so it is not used directly.

@@ -1,41 +1,43 @@
 import 'dart:async';
 
+import 'package:depotworkflow/src/splash_screen/splash_service.dart';
 import 'package:flutter/material.dart';
 
 import 'package:depotworkflow/src/login/login_view.dart';
 import 'splash_controller.dart';
+import 'package:get/get.dart';
 
-class SplashView extends StatefulWidget {
+class SplashView extends StatelessWidget {
+  SplashView({Key? key}) : super(key: key);
 
   static const routeName = '/splash';
 
-  @override
-  _SplashViewState createState() => _SplashViewState();
-}
-class _SplashViewState extends State<SplashView> {
-  @override
-  void initState() {
-    super.initState();
-    Timer(Duration(seconds: 1),
-            ()=>Navigator.pushReplacement(context,
-            MaterialPageRoute(builder:
-                (context) =>
-                    LoginView()
-            )
-        )
-    );
-  }
+  // @override
+  // final SplashController controller =
+  //     Get.put(SplashController(SplashService()));
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Image(
-          width: 256.0,
-          height: 256.0,
-          image: AssetImage(
-            'assets/images/process_logo.png',
-          ),
-        ),
+    return Scaffold(
+      body: GetBuilder<SplashController>(
+        init: SplashController(SplashService()),
+        builder: (controller) {
+          return Stack(
+            fit: StackFit.expand,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Image.asset(
+                    'assets/images/process_logo.png',
+                    width: controller.animation.value * 300,
+                    height: controller.animation.value * 300,
+                  ),
+                ],
+              ),
+            ],
+          );
+        },
       ),
     );
   }

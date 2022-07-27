@@ -3,40 +3,65 @@ import 'dart:async';
 import 'package:depotworkflow/src/home/home_controller.dart';
 import 'package:depotworkflow/src/home/home_service.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-/// Displays the various settings that can be customized by the user.
-///
-/// When a user changes a setting, the SettingsController is updated and
-/// Widgets that listen to the SettingsController are rebuilt.
-class HomeView extends StatelessWidget {
+class HomeView extends GetView<HomeController> {
   HomeView({Key? key}) : super(key: key);
 
   static const routeName = '/home';
 
-  final HomeController controller = HomeController(HomeService());
+  @override
+  final HomeController controller = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: DefaultTabController(
-        length: 2,
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text('Tabs Demo'),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Tabs Demo'),
+      ),
+      body: Center(
+          child: Obx(() => Text(
+              "Clicks: ${controller.selectedIndex}")) //Text("Page ${controller.selectedIndex}"), //New
           ),
-          bottomNavigationBar: TabBar(
-            labelColor: Colors.white,
-            unselectedLabelColor: Colors.white30,
-            onTap: controller.onItemTapped,
-            tabs: [
-              Tab(text: "Shubham"),
-              Tab(text: "Shubham1"),
-            ],
+      bottomNavigationBar: Row(
+        // alignment: Alignment.center,
+        // fit: StackFit.passthrough,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Expanded(
+            child: ElevatedButton(
+              style: ButtonStyle(
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(0.0),
+                  ),
+                ),
+                backgroundColor: controller.selectedIndex == 0
+                    ? MaterialStateProperty.all(Colors.blue)
+                    : MaterialStateProperty.all(Colors.grey),
+              ),
+              onPressed: () => controller.onItemTapped(0),
+              child: Text("Tickets"),
+            ),
           ),
-          body: Center(
-            child: Text("Page \(controller.selectedIndex)"), //New
+          Expanded(
+            child: ElevatedButton(
+              style: ButtonStyle(
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(0.0),
+                  ),
+                ),
+                backgroundColor: controller.selectedIndex == 1
+                    ? MaterialStateProperty.all(Colors.blue)
+                    : MaterialStateProperty.all(Colors.grey),
+              ),
+              onPressed: () => controller.onItemTapped(1),
+              child: Text("Inventory"),
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
