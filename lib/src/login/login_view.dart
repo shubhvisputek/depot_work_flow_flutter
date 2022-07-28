@@ -7,7 +7,6 @@ import '../settings/settings_view.dart';
 import 'login_controller.dart';
 
 import 'package:flutter/material.dart';
-import '../sample_feature/sample_item_list_view.dart';
 import 'package:get/get.dart';
 
 /// Displays the various settings that can be customized by the user.

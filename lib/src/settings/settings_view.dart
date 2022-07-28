@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
 import 'settings_controller.dart';
 
 /// Displays the various settings that can be customized by the user.
 ///
 /// When a user changes a setting, the SettingsController is updated and
 /// Widgets that listen to the SettingsController are rebuilt.
-class SettingsView extends StatelessWidget {
-  const SettingsView({Key? key, required this.controller}) : super(key: key);
+class SettingsView extends GetView<SettingsController> {
+  const SettingsView({Key? key}) : super(key: key);
 
   static const routeName = '/settings';
-
-  final SettingsController controller;
 
   @override
   Widget build(BuildContext context) {

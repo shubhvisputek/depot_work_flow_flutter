@@ -9,15 +9,17 @@ import 'package:get/get.dart';
 /// Controllers glue Data Services to Flutter Widgets. The SplashController
 /// uses the SplashService to store and retrieve user settings.
 class HomeController extends GetxController {
-  // HomeController(this._homeService);
+  // HomeController();
 
   // // Make SplashService a private variable so it is not used directly.
   // final HomeService _homeService;
 
+  static HomeController get to => Get.find();
+
   var selectedIndex = 0.obs;
 
   void onItemTapped(int index) {
-    selectedIndex = index.obs;
-    this.refresh();
+    selectedIndex.value = index;
+    update();
   }
 }

@@ -2,31 +2,29 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import '../login/login_view.dart';
-import 'splash_service.dart';
+import 'package:async/async.dart';
 import 'package:get/get.dart';
 
-/// A class that many Widgets can interact with to read user settings, update
-/// user settings, or listen to user settings changes.
-///
-/// Controllers glue Data Services to Flutter Widgets. The SplashController
-/// uses the SplashService to store and retrieve user settings.
 class SplashController extends GetxController
     with GetSingleTickerProviderStateMixin {
-  SplashController(this._splashService);
-
-  // Make SplashService a private variable so it is not used directly.
-  final SplashService _splashService;
-
   late AnimationController animationController;
   late Animation<double> animation;
 
-  @override
-  void onInit() {
+  final memo = AsyncMemoizer<void>();
+  Future<void> init() {
     animationInitilization();
-    super.onInit();
+    return memo.runOnce(_initFunction);
+  }
 
-    Timer(Duration(seconds: 2), () => Get.to(LoginView()));
+  Future<void> _initFunction() async {
+    final t = Timer.periodic(
+      Duration(milliseconds: 500),
+      (t) => {},
+    );
+    //simulate some long running operation
+    await Future.delayed(Duration(seconds: 2));
+    //cancel the timer once we are done
+    t.cancel();
   }
 
   animationInitilization() {
