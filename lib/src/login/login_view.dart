@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:depotworkflow/src/home/home_view.dart';
+import 'package:depotworkflow/src/services/auth_service.dart';
 import 'package:flutter/material.dart';
 
 import '../settings/settings_view.dart';
@@ -74,19 +75,14 @@ class LoginView extends GetView<LoginController> {
                 if (!users.containsKey(nameController.text)) {
                   ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text('User not exists')));
-                }
-                if (users[nameController.text] != passwordController.text) {
+                } else if (users[nameController.text] !=
+                    passwordController.text) {
                   ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text('Password does not match')));
+                } else {
+                  AuthService.to.login();
+                  Get.offAllNamed(HomeView.routeName);
                 }
-
-                Get.offAllNamed(HomeView.routeName);
-
-                // Navigator.of(context).pushNamedAndRemoveUntil(
-                //   HomeView.routeName,
-                //   (Route<dynamic> route) => false,
-                // );
-                // Navigator.of(context).pushReplacementNamed(SettingsView.routeName);
               },
             ),
           ),

@@ -5,6 +5,10 @@ import '../../routes/app_pages.dart';
 import 'inventory_controller.dart';
 
 class InventoryView extends GetView<InventoryController> {
+  InventoryView({Key? key}) : super(key: key);
+
+  static const routeName = '/inventory';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

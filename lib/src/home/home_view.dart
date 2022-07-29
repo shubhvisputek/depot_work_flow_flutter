@@ -4,8 +4,12 @@ import 'package:depotworkflow/src/home/home_controller.dart';
 import 'package:depotworkflow/src/home/home_service.dart';
 import 'package:depotworkflow/src/home/inventory/inventory_view.dart';
 import 'package:depotworkflow/src/home/tickets/tickets_view.dart';
+import 'package:depotworkflow/src/login/login_view.dart';
+import 'package:depotworkflow/src/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'drawer.dart';
 
 class HomeView extends GetView<HomeController> {
   HomeView({Key? key}) : super(key: key);
@@ -18,56 +22,94 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     Get.put(HomeController());
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Tabs Demo'),
-      ),
-      body: Center(
-        // child: Obx(() => Text("Clicks: ${controller.selectedIndex}")),
-        child: Text("Page ${HomeController.to.selectedIndex}"), //New
-        // child: controller.selectedIndex.value == 0
-        //     ? TicketsView()
-        //     : InventoryView(),
-      ),
-      bottomNavigationBar: Row(
-        // alignment: Alignment.center,
-        // fit: StackFit.passthrough,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Expanded(
-            child: ElevatedButton(
-              style: ButtonStyle(
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(0.0),
-                  ),
-                ),
-                backgroundColor: controller.selectedIndex.value == 0
-                    ? MaterialStateProperty.all(Colors.blue)
-                    : MaterialStateProperty.all(Colors.grey),
-              ),
-              onPressed: () => controller.onItemTapped(0),
-              child: Text("Tickets"),
-            ),
+    return GetBuilder<HomeController>(
+      init: HomeController(),
+      builder: (controller) => Scaffold(
+        drawer: DrawerWidget(),
+        appBar: AppBar(
+          title: controller.selectedIndex.value == 0
+              ? const Text("Tickets")
+              : const Text("Inventory"),
+          leading: IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () {
+              AuthService.to.logout();
+              Get.offAllNamed(LoginView.routeName);
+            },
           ),
-          Expanded(
-            child: ElevatedButton(
-              style: ButtonStyle(
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(0.0),
-                  ),
-                ),
-                backgroundColor: controller.selectedIndex.value == 1
-                    ? MaterialStateProperty.all(Colors.blue)
-                    : MaterialStateProperty.all(Colors.grey),
-              ),
-              onPressed: () => controller.onItemTapped(1),
-              child: Text("Inventory"),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.person),
+              onPressed: () {
+                AuthService.to.logout();
+                Get.offAllNamed(LoginView.routeName);
+              },
             ),
+            IconButton(
+              icon: const Icon(Icons.search),
+              onPressed: () {
+                AuthService.to.logout();
+                Get.offAllNamed(LoginView.routeName);
+              },
+            ),
+          ],
+        ),
+        body: Center(
+          // child: Obx(() => Text("Clicks: ${controller.selectedIndex}")),
+          // child: Text("Page ${HomeController.to.selectedIndex}"), //New
+          child: controller.selectedIndex.value == 0
+              ? TicketsView()
+              : InventoryView(),
+        ),
+        bottomNavigationBar: BottomAppBar(
+          color: Colors.white,
+          // child: Container(
+          //   color: Color(0xFF313131).withOpacity(0.7),
+          //   height: 50,
+          //   width: double.maxFinite,
+          child: Row(
+            // alignment: Alignment.center,
+            // fit: StackFit.passthrough,
+
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(0.0),
+                      ),
+                    ),
+                    backgroundColor: controller.selectedIndex.value == 0
+                        ? MaterialStateProperty.all(Colors.blue)
+                        : MaterialStateProperty.all(Colors.grey),
+                  ),
+                  onPressed: () => controller.onItemTapped(0),
+                  child: const Text("Tickets"),
+                ),
+              ),
+              Expanded(
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(0.0),
+                      ),
+                    ),
+                    backgroundColor: controller.selectedIndex.value == 1
+                        ? MaterialStateProperty.all(Colors.blue)
+                        : MaterialStateProperty.all(Colors.grey),
+                  ),
+                  onPressed: () => controller.onItemTapped(1),
+                  child: const Text("Inventory"),
+                ),
+              ),
+            ],
+            // ),
           ),
-        ],
+        ),
       ),
     );
   }

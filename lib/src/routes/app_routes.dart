@@ -4,6 +4,8 @@ part of 'app_pages.dart';
 // DO NOT EDIT. This is code generated via package:get_cli/get_cli.dart
 
 abstract class Routes {
+  // static const ROOT = _Paths.ROOT;
+
   static const HOME = _Paths.HOME;
   static const PROFILE = _Paths.HOME + _Paths.TICKETS;
   static const PRODUCTS = _Paths.HOME + _Paths.INVENTORY;
@@ -19,10 +21,11 @@ abstract class Routes {
 }
 
 abstract class _Paths {
+  // static const ROOT = RootView.routeName;
+  static const LOGIN = "/"; // LoginView.routeName;
   static const HOME = HomeView.routeName;
+  static const TICKETS = TicketsView.routeName;
+  static const INVENTORY = InventoryView.routeName;
   static const SETTINGS = SettingsView.routeName;
-  static const LOGIN = LoginView.routeName;
-  static const TICKETS = '/tickets';
-  static const INVENTORY = '/inventory';
   static const UNKNOWN = UnknownRouteView.routeName;
 }

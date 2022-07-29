@@ -10,9 +10,14 @@ class SplashController extends GetxController
   late AnimationController animationController;
   late Animation<double> animation;
 
+  @override
+  void onInit() {
+    super.onInit();
+    animationInitilization();
+  }
+
   final memo = AsyncMemoizer<void>();
   Future<void> init() {
-    animationInitilization();
     return memo.runOnce(_initFunction);
   }
 

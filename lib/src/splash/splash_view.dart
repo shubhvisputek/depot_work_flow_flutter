@@ -12,20 +12,23 @@ class SplashView extends GetView<SplashController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Image.asset(
-                'assets/images/process_logo.png',
-                width: controller.animation.value * 300,
-                height: controller.animation.value * 300,
-              ),
-            ],
-          ),
-        ],
+      body: GetBuilder<SplashController>(
+        init: SplashController(),
+        builder: (controller) => Stack(
+          fit: StackFit.expand,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Image.asset(
+                  'assets/images/process_logo.png',
+                  width: controller.animation.value * 300,
+                  height: controller.animation.value * 300,
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

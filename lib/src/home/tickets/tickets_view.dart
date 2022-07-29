@@ -5,49 +5,46 @@ import '../../routes/app_pages.dart';
 import 'tickets_controller.dart';
 
 class TicketsView extends GetView<TicketsController> {
+  TicketsView({Key? key}) : super(key: key);
+
+  static const routeName = '/tickets';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.amber,
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              'ProfileView is working',
-              style: TextStyle(fontSize: 20),
-            ),
-            Hero(
-              tag: 'heroLogo',
-              child: const FlutterLogo(),
-            ),
-            MaterialButton(
-              child: Text('Show a test dialog'),
-              onPressed: () {
-                //shows a dialog
-                Get.defaultDialog(
-                  title: 'Test Dialog !!',
-                  barrierDismissible: true,
-                );
-              },
-            ),
-            MaterialButton(
-              child: Text('Show a test dialog in Home router outlet'),
-              onPressed: () {
-                //shows a dialog
-
-                Get.defaultDialog(
-                  title: 'Test Dialog In Home Outlet !!',
-                  barrierDismissible: true,
-
-                  // id: Routes.HOME,
-                  // navigatorKey: Get.nestedKey(Routes.HOME),
-                );
-              },
-            )
-          ],
-        ),
+      // backgroundColor: Colors.amber,
+      body: ListView.builder(
+        itemCount: 20,
+        itemBuilder: (context, i) {
+          return loadItem();
+        },
       ),
+    );
+  }
+
+  Widget loadItem() {
+    return Column(
+      children: [
+        ListTile(
+          title: Text("Lane 7000"),
+          subtitle: Text("This request is generated in iSupport"),
+          trailing: Wrap(
+            // mainAxisSize: MainAxisSize.min,
+            spacing: 5,
+            children: const [
+              Icon(
+                Icons.circle,
+                color: Colors.red,
+                size: 20,
+                shadows: [Shadow()],
+              ),
+              Text("High"),
+            ],
+          ),
+          onTap: () {},
+        ),
+        Divider(height: 0),
+      ],
     );
   }
 }

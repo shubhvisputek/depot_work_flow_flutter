@@ -15,16 +15,13 @@ class SettingsController extends GetxController {
 
   // Make ThemeMode a private variable so it is not updated directly without
   // also persisting the changes with the SettingsService.
-  late ThemeMode _themeMode;
-
-  // Allow Widgets to read the user's preferred ThemeMode.
-  ThemeMode get themeMode => _themeMode;
+  ThemeMode themeMode = ThemeMode.system;
 
   /// Load the user's settings from the SettingsService. It may load from a
   /// local database or the internet. The controller only knows it can load the
   /// settings from the service.
   Future<void> loadSettings() async {
-    _themeMode = await _settingsService.themeMode();
+    themeMode = await _settingsService.themeMode();
 
     // Important! Inform listeners a change has occurred.
     update();
@@ -35,10 +32,10 @@ class SettingsController extends GetxController {
     if (newThemeMode == null) return;
 
     // Do not perform any work if new and old ThemeMode are identical
-    if (newThemeMode == _themeMode) return;
+    if (newThemeMode == themeMode) return;
 
     // Otherwise, store the new ThemeMode in memory
-    _themeMode = newThemeMode;
+    themeMode = newThemeMode;
 
     // Important! Inform listeners a change has occurred.
     update();
