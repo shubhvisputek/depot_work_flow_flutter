@@ -27,6 +27,7 @@ class HomeView extends GetView<HomeController> {
       builder: (controller) => Scaffold(
         drawer: DrawerWidget(),
         appBar: AppBar(
+          centerTitle: true,
           title: controller.selectedIndex.value == 0
               ? const Text("Tickets")
               : const Text("Inventory"),
@@ -61,10 +62,9 @@ class HomeView extends GetView<HomeController> {
               ? TicketsView()
               : InventoryView(),
         ),
-        bottomNavigationBar: BottomAppBar(
-          color: Colors.white,
-          // child: Container(
-          //   color: Color(0xFF313131).withOpacity(0.7),
+        bottomNavigationBar: Container(
+          // padding: EdgeInsets.all(0.0),
+          // color: Color(0xFF313131).withOpacity(0.7),
           //   height: 50,
           //   width: double.maxFinite,
           child: Row(
@@ -72,11 +72,14 @@ class HomeView extends GetView<HomeController> {
             // fit: StackFit.passthrough,
 
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
+            // mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Expanded(
                 child: ElevatedButton(
                   style: ButtonStyle(
+                    minimumSize: MaterialStateProperty.all<Size>(
+                      Size(195, 48),
+                    ),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(0.0),
@@ -93,6 +96,9 @@ class HomeView extends GetView<HomeController> {
               Expanded(
                 child: ElevatedButton(
                   style: ButtonStyle(
+                    minimumSize: MaterialStateProperty.all<Size>(
+                      Size(195, 48),
+                    ),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(0.0),
