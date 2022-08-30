@@ -7,6 +7,8 @@ import 'package:get/get.dart';
 import '../home/home_binding.dart';
 import '../home/inventory/inventory_binding.dart';
 import '../home/inventory/inventory_view.dart';
+import '../home/tickets/ticket/ticket_binding.dart';
+import '../home/tickets/ticket/ticket_view.dart';
 import '../home/tickets/tickets_binding.dart';
 import '../login/login_binding.dart';
 import '../middleware/auth_middleware.dart';
@@ -47,17 +49,30 @@ class AppPages {
           title: null,
           children: [
             GetPage(
-              middlewares: [
-                //only enter this route when authed
-                EnsureAuthMiddleware(),
-              ],
-              name: _Paths.TICKETS,
-              page: () => TicketsView(),
-              title: 'Tickets',
-              transition: Transition.zoom,
-              participatesInRootNavigator: true,
-              bindings: [TicketsBinding()],
-            ),
+                middlewares: [
+                  //only enter this route when authed
+                  EnsureAuthMiddleware(),
+                ],
+                name: _Paths.TICKETS,
+                page: () => TicketsView(),
+                title: 'Tickets',
+                transition: Transition.zoom,
+                participatesInRootNavigator: true,
+                bindings: [TicketsBinding()],
+                children: [
+                  GetPage(
+                    middlewares: [
+                      //only enter this route when authed
+                      EnsureAuthMiddleware(),
+                    ],
+                    name: _Paths.TICKET,
+                    page: () => TicketView(),
+                    title: 'Ticket',
+                    transition: Transition.zoom,
+                    participatesInRootNavigator: true,
+                    bindings: [TicketBinding()],
+                  ),
+                ]),
             GetPage(
               middlewares: [
                 //only enter this route when authed

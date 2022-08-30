@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../login/login_view.dart';
 import '../services/auth_service.dart';
 import '../routes/app_pages.dart';
 
@@ -21,19 +22,15 @@ class DrawerWidget extends StatelessWidget {
           ListTile(
             title: Text('Home'),
             onTap: () {
-              Get.toNamed(Routes.HOME);
-              //to close the drawer
-
               Navigator.of(context).pop();
+              Get.toNamed(Routes.HOME);
             },
           ),
           ListTile(
             title: Text('Settings'),
             onTap: () {
-              Get.toNamed(Routes.SETTINGS);
-              //to close the drawer
-
               Navigator.of(context).pop();
+              Get.toNamed(Routes.SETTINGS);
             },
           ),
           ListTile(
@@ -44,11 +41,9 @@ class DrawerWidget extends StatelessWidget {
               ),
             ),
             onTap: () {
-              AuthService.to.logout();
-              Get.toNamed(Routes.LOGIN);
-              //to close the drawer
-
               Navigator.of(context).pop();
+              AuthService.to.logout();
+              Get.offAllNamed(LoginView.routeName);
             },
           ),
         ],

@@ -7,8 +7,10 @@ abstract class Routes {
   // static const ROOT = _Paths.ROOT;
 
   static const HOME = _Paths.HOME;
-  static const PROFILE = _Paths.HOME + _Paths.TICKETS;
-  static const PRODUCTS = _Paths.HOME + _Paths.INVENTORY;
+  static const TICKETS = _Paths.HOME + _Paths.TICKETS;
+  static const INVENTORY = _Paths.HOME + _Paths.INVENTORY;
+
+  static const TICKET = TICKETS + _Paths.TICKET;
 
   static const LOGIN = _Paths.LOGIN;
   static const SETTINGS = _Paths.SETTINGS;
@@ -17,7 +19,7 @@ abstract class Routes {
   Routes._();
   static String LOGIN_THEN(String afterSuccessfulLogin) =>
       '$LOGIN?then=${Uri.encodeQueryComponent(afterSuccessfulLogin)}';
-  static String PRODUCT_DETAILS(String productId) => '$PRODUCTS/$productId';
+  static String TICKET_DETAILS(String ticketId) => '$TICKETS/$ticketId';
 }
 
 abstract class _Paths {
@@ -25,6 +27,7 @@ abstract class _Paths {
   static const LOGIN = "/"; // LoginView.routeName;
   static const HOME = HomeView.routeName;
   static const TICKETS = TicketsView.routeName;
+  static const TICKET = TicketView.routeName;
   static const INVENTORY = InventoryView.routeName;
   static const SETTINGS = SettingsView.routeName;
   static const UNKNOWN = UnknownRouteView.routeName;

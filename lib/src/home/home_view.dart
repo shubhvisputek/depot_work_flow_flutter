@@ -25,33 +25,27 @@ class HomeView extends GetView<HomeController> {
     return GetBuilder<HomeController>(
       init: HomeController(),
       builder: (controller) => Scaffold(
-        drawer: DrawerWidget(),
+        drawer: const DrawerWidget(),
         appBar: AppBar(
           centerTitle: true,
           title: controller.selectedIndex.value == 0
               ? const Text("Tickets")
               : const Text("Inventory"),
-          leading: IconButton(
-            icon: const Icon(Icons.logout),
-            onPressed: () {
-              AuthService.to.logout();
-              Get.offAllNamed(LoginView.routeName);
-            },
-          ),
+          // leading: IconButton(
+          //   icon: const Icon(Icons.logout),
+          //   onPressed: () {
+          //     AuthService.to.logout();
+          //     Get.offAllNamed(LoginView.routeName);
+          //   },
+          // ),
           actions: [
             IconButton(
               icon: const Icon(Icons.person),
-              onPressed: () {
-                AuthService.to.logout();
-                Get.offAllNamed(LoginView.routeName);
-              },
+              onPressed: () {},
             ),
             IconButton(
               icon: const Icon(Icons.search),
-              onPressed: () {
-                AuthService.to.logout();
-                Get.offAllNamed(LoginView.routeName);
-              },
+              onPressed: () {},
             ),
           ],
         ),

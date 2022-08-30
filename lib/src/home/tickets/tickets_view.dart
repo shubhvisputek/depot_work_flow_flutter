@@ -1,3 +1,4 @@
+import 'package:depotworkflow/src/home/tickets/ticket/ticket_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -41,7 +42,9 @@ class TicketsView extends GetView<TicketsController> {
               Text("High"),
             ],
           ),
-          onTap: () {},
+          onTap: () {
+            Get.toNamed(Routes.TICKET);
+          },
         ),
         Divider(height: 0),
       ],
