@@ -17,24 +17,24 @@ class DrawerWidget extends StatelessWidget {
         children: [
           Container(
             height: 100,
-            color: Colors.red,
+            color: Colors.blue,
           ),
           ListTile(
-            title: Text('Home'),
+            title: const Text('Home'),
             onTap: () {
               Navigator.of(context).pop();
               Get.toNamed(Routes.HOME);
             },
           ),
           ListTile(
-            title: Text('Settings'),
+            title: const Text('Settings'),
             onTap: () {
               Navigator.of(context).pop();
               Get.toNamed(Routes.SETTINGS);
             },
           ),
           ListTile(
-            title: Text(
+            title: const Text(
               'Logout',
               style: TextStyle(
                 color: Colors.red,
