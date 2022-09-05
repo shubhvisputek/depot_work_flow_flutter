@@ -19,24 +19,12 @@ class TicketController extends GetxController {
 
   @override
   void onInit() {
-    //addScrollListenerWithTimer();
+    addScrollListenerWithTimer();
     super.onInit();
   }
 
   void addScrollListenerWithTimer() {
     scroll_controller.addListener(() {
-      if (timer != null) {
-        timer!.cancel();
-        timer = Timer(Duration(milliseconds: 300), () {
-          timer = null;
-          update();
-        });
-      } else {
-        timer = Timer(Duration(milliseconds: 300), () {
-          timer = null;
-          update();
-        });
-      }
       //scroll_controller.jumpTo(items.length.toDouble());
       update();
     });
@@ -54,7 +42,30 @@ class TicketController extends GetxController {
 
   void onAddItemTapped(String data) {
     items.add(data);
+    if (timer != null) {
+      timer!.cancel();
+      timer = Timer(Duration(milliseconds: 500), () {
+        timer = null;
+        update();
+      });
+    } else {
+      timer = Timer(Duration(milliseconds: 500), () {
+        timer = null;
+        update();
+      });
+    }
+    _scrollDown();
     update();
+  }
+
+  // This is what you're looking for!
+  void _scrollDown() {
+    scroll_controller.jumpTo(scroll_controller.position.maxScrollExtent + 56);
+    // scroll_controller.animateTo(
+    //   scroll_controller.position.maxScrollExtent,
+    //   duration: Duration(seconds: 1),
+    //   curve: Curves.fastOutSlowIn,
+    // );
   }
 
   void onRemovedItemTapped(int index) {

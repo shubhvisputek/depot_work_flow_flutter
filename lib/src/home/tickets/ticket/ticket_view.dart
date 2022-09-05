@@ -84,6 +84,10 @@ class TicketView extends GetView<TicketController> {
     return Column(
       children: [
         ListTile(
+          tileColor:
+              controller.timer != null && index == controller.items.length - 1
+                  ? Colors.green
+                  : Colors.transparent,
           minLeadingWidth: 20.0,
           leading: Column(
             mainAxisAlignment: MainAxisAlignment.center,
