@@ -1,4 +1,6 @@
 import 'package:depotworkflow/src/home/home_view.dart';
+import 'package:depotworkflow/src/home/tickets/ticket/device/%20device_completion/device_completion_binding.dart';
+import 'package:depotworkflow/src/home/tickets/ticket/device/%20device_completion/device_completion_view.dart';
 import 'package:depotworkflow/src/home/tickets/tickets_view.dart';
 import 'package:depotworkflow/src/login/login_view.dart';
 import 'package:depotworkflow/src/settings/settings_view.dart';
@@ -7,6 +9,8 @@ import 'package:get/get.dart';
 import '../home/home_binding.dart';
 import '../home/inventory/inventory_binding.dart';
 import '../home/inventory/inventory_view.dart';
+import '../home/tickets/ticket/device/device_binding.dart';
+import '../home/tickets/ticket/device/device_view.dart';
 import '../home/tickets/ticket/ticket_binding.dart';
 import '../home/tickets/ticket/ticket_view.dart';
 import '../home/tickets/tickets_binding.dart';
@@ -49,30 +53,59 @@ class AppPages {
           title: null,
           children: [
             GetPage(
-                middlewares: [
-                  //only enter this route when authed
-                  EnsureAuthMiddleware(),
-                ],
-                name: _Paths.TICKETS,
-                page: () => TicketsView(),
-                title: 'Tickets',
-                transition: Transition.zoom,
-                participatesInRootNavigator: true,
-                bindings: [TicketsBinding()],
-                children: [
-                  GetPage(
-                    middlewares: [
-                      //only enter this route when authed
-                      EnsureAuthMiddleware(),
-                    ],
-                    name: _Paths.TICKET,
-                    page: () => TicketView(),
-                    title: 'Ticket',
-                    transition: Transition.zoom,
-                    participatesInRootNavigator: true,
-                    bindings: [TicketBinding()],
-                  ),
-                ]),
+              middlewares: [
+                //only enter this route when authed
+                EnsureAuthMiddleware(),
+              ],
+              name: _Paths.TICKETS,
+              page: () => TicketsView(),
+              title: 'Tickets',
+              transition: Transition.zoom,
+              participatesInRootNavigator: true,
+              bindings: [TicketsBinding()],
+              children: [
+                GetPage(
+                  middlewares: [
+                    //only enter this route when authed
+                    EnsureAuthMiddleware(),
+                  ],
+                  name: _Paths.TICKET,
+                  page: () => TicketView(),
+                  title: 'Ticket',
+                  transition: Transition.zoom,
+                  participatesInRootNavigator: true,
+                  bindings: [TicketBinding()],
+                  children: [
+                    GetPage(
+                      middlewares: [
+                        //only enter this route when authed
+                        EnsureAuthMiddleware(),
+                      ],
+                      name: _Paths.DEVICE,
+                      page: () => DeviceView(),
+                      title: 'Device',
+                      transition: Transition.zoom,
+                      participatesInRootNavigator: true,
+                      bindings: [DeviceBinding()],
+                      children: [
+                        GetPage(
+                          middlewares: [
+                            //only enter this route when authed
+                            EnsureAuthMiddleware(),
+                          ],
+                          name: _Paths.DEVICE_COMPLETION,
+                          page: () => DeviceCompletionView(),
+                          title: 'Device Completion',
+                          transition: Transition.zoom,
+                          participatesInRootNavigator: true,
+                          bindings: [DeviceCompletionBinding()],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
             GetPage(
               middlewares: [
                 //only enter this route when authed

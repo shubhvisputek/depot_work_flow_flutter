@@ -109,7 +109,7 @@ class TicketView extends GetView<TicketController> {
           ),
           // title: Text(controller.items[index]),
           trailing: const Text("Completed"),
-          onTap: () => controller.onCompletedBtnTapped(),
+          onTap: () => controller.onItemTapped(index),
         ),
         const Divider(height: 0),
       ],

@@ -4,6 +4,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../routes/app_pages.dart';
+
 class TicketController extends GetxController {
   static TicketController get to => Get.find();
 
@@ -37,6 +39,9 @@ class TicketController extends GetxController {
 
   void onItemTapped(int index) {
     selectedIndex.value = index;
+
+    Get.toNamed(Routes.DEVICE);
+
     update();
   }
 
