@@ -23,27 +23,27 @@ class DeviceView extends GetView<DeviceController> {
           title: const Text("Device"),
         ),
         body: pageBody(),
-        bottomNavigationBar: Container(
-          padding: EdgeInsets.fromLTRB(50.0, 10.0, 50.0, 10.0),
-          color: Color.fromARGB(255, 59, 59, 59).withOpacity(0.7),
-          //   height: 50,
-          //   width: double.maxFinite,
-          child: ElevatedButton(
-            style: ButtonStyle(
-              // minimumSize: MaterialStateProperty.all<Size>(
-              //   Size(195, 48),
-              // ),
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(100.0),
-                ),
-              ),
-              backgroundColor: MaterialStateProperty.all(Colors.blue),
-            ),
-            onPressed: () => controller.onNextBtnTapped(),
-            child: const Text("Next"),
-          ),
-        ),
+        // bottomNavigationBar: Container(
+        //   padding: EdgeInsets.fromLTRB(50.0, 10.0, 50.0, 10.0),
+        //   color: Color.fromARGB(255, 59, 59, 59).withOpacity(0.7),
+        //   //   height: 50,
+        //   //   width: double.maxFinite,
+        //   child: ElevatedButton(
+        //     style: ButtonStyle(
+        //       // minimumSize: MaterialStateProperty.all<Size>(
+        //       //   Size(195, 48),
+        //       // ),
+        //       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+        //         RoundedRectangleBorder(
+        //           borderRadius: BorderRadius.circular(100.0),
+        //         ),
+        //       ),
+        //       backgroundColor: MaterialStateProperty.all(Colors.blue),
+        //     ),
+        //     onPressed: () => controller.onNextBtnTapped(),
+        //     child: const Text("Next"),
+        //   ),
+        // ),
       ),
     );
   }

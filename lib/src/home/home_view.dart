@@ -39,14 +39,18 @@ class HomeView extends GetView<HomeController> {
           //   },
           // ),
           actions: [
-            IconButton(
-              icon: const Icon(Icons.person),
-              onPressed: () {},
-            ),
-            IconButton(
-              icon: const Icon(Icons.search),
-              onPressed: () {},
-            ),
+            controller.selectedIndex.value == 1
+                ? IconButton(
+                    icon: const Icon(Icons.person),
+                    onPressed: () {},
+                  )
+                : Container(),
+            controller.selectedIndex.value == 1
+                ? IconButton(
+                    icon: const Icon(Icons.search),
+                    onPressed: () {},
+                  )
+                : Container(),
           ],
         ),
         body: Center(
