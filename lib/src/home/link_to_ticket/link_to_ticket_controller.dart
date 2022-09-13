@@ -91,4 +91,6 @@ class LinkToTicketBindingController extends GetxController {
   }
 
   void onScanInventoryTapped() {}
+
+  void onSubmitBtnTapped() {}
 }

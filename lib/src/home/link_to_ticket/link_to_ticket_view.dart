@@ -20,6 +20,27 @@ class LinkToTicketBindingView extends GetView<LinkToTicketBindingController> {
           centerTitle: true,
           title: const Text("Link To Ticket"),
         ),
+        bottomNavigationBar: Container(
+          padding: EdgeInsets.fromLTRB(50.0, 10.0, 50.0, 10.0),
+          color: Color.fromARGB(255, 59, 59, 59).withOpacity(0.7),
+          //   height: 50,
+          //   width: double.maxFinite,
+          child: ElevatedButton(
+            style: ButtonStyle(
+              // minimumSize: MaterialStateProperty.all<Size>(
+              //   Size(195, 48),
+              // ),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(100.0),
+                ),
+              ),
+              backgroundColor: MaterialStateProperty.all(Colors.blue),
+            ),
+            onPressed: () => controller.onSubmitBtnTapped(),
+            child: const Text("Submit"),
+          ),
+        ),
         body: Container(
           padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
           child: Column(
