@@ -9,6 +9,7 @@ abstract class Routes {
   static const HOME = _Paths.HOME;
 
   static const INVENTORY = _Paths.HOME + _Paths.INVENTORY;
+  static const LINK_TO_TICKET = INVENTORY + _Paths.LINK_TO_TICKET;
 
   static const TICKETS = _Paths.HOME + _Paths.TICKETS;
   static const TICKET = TICKETS + _Paths.TICKET;
@@ -32,6 +33,7 @@ abstract class _Paths {
   static const HOME = HomeView.routeName;
   static const TICKETS = TicketsView.routeName;
   static const TICKET = TicketView.routeName;
+  static const LINK_TO_TICKET = LinkToTicketBindingView.routeName;
   static const DEVICE = DeviceView.routeName;
   static const DEVICE_COMPLETION = DeviceCompletionView.routeName;
   static const INVENTORY = InventoryView.routeName;

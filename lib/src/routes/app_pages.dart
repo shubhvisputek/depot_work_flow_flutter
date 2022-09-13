@@ -1,4 +1,5 @@
 import 'package:depotworkflow/src/home/home_view.dart';
+import 'package:depotworkflow/src/home/link_to_ticket/link_to_ticket_binding.dart';
 import 'package:depotworkflow/src/home/tickets/ticket/device/%20device_completion/device_completion_binding.dart';
 import 'package:depotworkflow/src/home/tickets/ticket/device/%20device_completion/device_completion_view.dart';
 import 'package:depotworkflow/src/home/tickets/tickets_view.dart';
@@ -9,6 +10,7 @@ import 'package:get/get.dart';
 import '../home/home_binding.dart';
 import '../home/inventory/inventory_binding.dart';
 import '../home/inventory/inventory_view.dart';
+import '../home/link_to_ticket/link_to_ticket_view.dart';
 import '../home/tickets/ticket/device/device_binding.dart';
 import '../home/tickets/ticket/device/device_view.dart';
 import '../home/tickets/ticket/ticket_binding.dart';
@@ -117,6 +119,20 @@ class AppPages {
               transition: Transition.size,
               participatesInRootNavigator: true,
               bindings: [InventoryBinding()],
+              children: [
+                GetPage(
+                  middlewares: [
+                    //only enter this route when authed
+                    EnsureAuthMiddleware(),
+                  ],
+                  name: _Paths.LINK_TO_TICKET,
+                  page: () => LinkToTicketBindingView(),
+                  title: 'Link To Ticket',
+                  transition: Transition.zoom,
+                  participatesInRootNavigator: true,
+                  bindings: [LinkToTicketBinding()],
+                ),
+              ],
             ),
           ],
         ),
